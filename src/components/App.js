@@ -44,7 +44,7 @@ class App extends React.Component {
     })
     console.log(this.state.userSearch);
   }
-//user keystroke
+  //user keystroke
   userAddFunc(title) {
     this.setState({
       userAdd: title.target.value.trim()
@@ -60,16 +60,15 @@ class App extends React.Component {
         list.removeChild(list.childNodes[2]);
       }
       for (var i = 0; i < this.state.movies.length; i++) {
-        for (var j = 0; j < this.state.userSearch.length; j++) {
-          if (this.state.movies[i].title.toLocaleLowerCase()[j] === this.state.userSearch.toLocaleLowerCase()[j]) {
-            if (searchFound.indexOf(this.state.movies[i]) < 0) {
-              searchFound.push(this.state.movies[i]);
-            }
-            continue;
+        if (this.state.movies[i].title.toLocaleLowerCase().includes(this.state.userSearch.toLocaleLowerCase())) {
+          if (searchFound.indexOf(this.state.movies[i]) < 0) {
+            searchFound.push(this.state.movies[i]);
           }
-          if (this.state.movies[i].title[j] !== this.state.userSearch[j] && j > 0) {
-          }
+          continue;
         }
+        if (!this.state.movies[i].title.toLocaleLowerCase().includes(this.state.userSearch.toLocaleLowerCase())) {
+        }
+
       }
       if (searchFound.length === 0) {
         var node = document.createElement('div');
